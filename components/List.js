@@ -1,6 +1,12 @@
 import React from 'react'
 import {Text, View, StyleSheet, Dimensions, FlatList} from 'react-native';
 import Card from './Card'
+import PropTypes from 'prop-types';
+
+const propTypes = {
+    title: PropTypes.string,
+    content: PropTypes.object,
+}
 
 class List extends React.PureComponent {
     
@@ -33,5 +39,7 @@ const styles = StyleSheet.create({
         paddingBottom: 20,
     }
 })
+
+List.propTypes = propTypes;
 
 export default List;

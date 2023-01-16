@@ -1,8 +1,13 @@
 import { style } from 'deprecated-react-native-prop-types/DeprecatedViewPropTypes';
 import React from 'react'
 import { TouchableOpacity, StyleSheet, Image, Text} from 'react-native';
+import PropTypes from 'prop-types';
 
 const placeHolderImage = require('../assets/images/placeholder.png')
+
+const propTypes = {
+    item: PropTypes.object,
+}
 
 class Card extends React.PureComponent {
     
@@ -45,6 +50,8 @@ const styles = StyleSheet.create({
 
     },
 });
+
+Card.propTypes = propTypes;
 
 export default Card;
 

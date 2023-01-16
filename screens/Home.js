@@ -1,9 +1,11 @@
 
 import React, { useEffect, useState } from 'react';
-import {Text, View, StyleSheet, Dimensions, FlatList} from 'react-native';
+import {Text, View, StyleSheet, Dimensions, ScrollView} from 'react-native';
 import { getPopularMovies, getUpcomingMovies } from '../services/services';
 import { SliderBox } from "react-native-image-slider-box"
 import List from '../components/List'
+import react from 'react'
+
 
 
 const dimensions = Dimensions.get('screen')
@@ -39,6 +41,7 @@ const Home = () => {
 
     return (
     <React.Fragment>
+        <ScrollView>
         <View
         style={styles.sliderContainer}>
             <SliderBox 
@@ -51,6 +54,12 @@ const Home = () => {
         <View style={styles.carousel}>
             <List title="Popular Movies" content={popularMovies} ></List>
         </View>
+        <View style={styles.carousel}>
+            <List title="Popular Movies" content={popularMovies} ></List>
+        </View><View style={styles.carousel}>
+            <List title="Popular Movies" content={popularMovies} ></List>
+        </View>
+        </ScrollView>
     </React.Fragment>
     );
 }
