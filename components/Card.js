@@ -14,7 +14,8 @@ class Card extends React.PureComponent {
     render() {
         const {navigation, item} = this.props;
         return (
-            <TouchableOpacity onPress={() => navigation.navigate('Detail') } style={style.container} >
+            <TouchableOpacity onPress={() => navigation.navigate('Detail', {movieDetail: item})} 
+                style={style.container} >
                 <Image style={styles.image} 
                 source={
                     item.poster_path 
