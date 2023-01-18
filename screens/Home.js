@@ -1,9 +1,22 @@
 
 import React, { useEffect, useState } from 'react';
-import {ActivityIndicator, View, StyleSheet, Dimensions, ScrollView} from 'react-native';
-import { getPopularMovies, getUpcomingMovies, getPopularTv, getFamilyMovies, getDocumentaryMovies } from '../services/services';
+import {
+    ActivityIndicator, 
+    View, 
+    StyleSheet, 
+    Dimensions, 
+    ScrollView
+        } from 'react-native';
+import { 
+    getPopularMovies, 
+    getUpcomingMovies, 
+    getPopularTv,     
+    getFamilyMovies, 
+    getDocumentaryMovies
+     } from '../services/services';
 import { SliderBox } from "react-native-image-slider-box"
 import List from '../components/List'
+import Error from '../components/Error';
 
 
 
@@ -52,8 +65,8 @@ const Home = () => {
                 setDocumentaryMovies(documentaryMoviesData);
                 setLoaded(true);
             },
-        ).catch(err => {
-            setError(err);    
+        ).catch(() => {
+            setError(true);    
         }).finally(() => {
             setLoaded(true)
         });
@@ -98,7 +111,7 @@ const Home = () => {
     return (
     <React.Fragment>
         {/* Upcoming Movies */}
-        {loaded && (
+        {loaded && !error &&(
             <ScrollView>
             {moviesImages &&  (<View
             style={styles.sliderContainer}>
@@ -140,6 +153,7 @@ const Home = () => {
             </ScrollView>
         )}
         {!loaded && <ActivityIndicator size='large'/> }
+        {error && <Error />}
     </React.Fragment>
     );
 }
