@@ -1,13 +1,52 @@
-import React from 'react'
-import {Text} from 'react-native'
+import React, {useEffect, useState}from 'react'
+import {ScrollView, StyleSheet, Image, Dimensions, ActivityIndicator} from 'react-native'
+import {getMovie} from '../services/services'
+
+
+const placeHolderImage = require('../assets/images/placeholder.png')
+const height = Dimensions.get('screen').height;
 
 const Detail = ({route, navigation}) => {
-    const movieDetail = route.params.movieDetail;
+
+    const movieId = route.params.movieId;
+    const [movieDetail, setMovieDetail ] = useState()
+    const [loaded, setLoaded ] = useState(false)
+    
+
+    useEffect(()=> {
+        getMovie(movieId).then(movieData => {
+            setMovieDetail(movieData)
+            setLoaded(true);
+        });
+    }, [movieId]);
+
     return (
         <React.Fragment>
-            <Text>{movieDetail.title}</Text>
+           {loaded &&  
+           (<ScrollView>
+             <Image 
+             resizeMode='cover'
+             style={styles.image} 
+                source={
+                    movieDetail.poster_path 
+                    ? {uri: 'https://image.tmdb.org/t/p/w500' + movieDetail.poster_path}
+                     : placeHolderImage
+                    }
+                />
+            </ScrollView>
+            )}
+            {!loaded && <ActivityIndicator size="large" />}
         </React.Fragment>
     );
 }
+
+const styles = StyleSheet.create({
+   
+    image : {
+        height: height / 2.5,
+      
+    },
+});
+
 
 export default Detail;
