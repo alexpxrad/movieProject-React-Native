@@ -12,28 +12,28 @@ export const getPopularMovies = async () => {
   // Get Upcoming Movies
 export const getUpcomingMovies = async () => {
     const resp = await axios.get(
-      `${apiUrl}/movie/upcoming?${apiKey}`,);
+      `${apiUrl}/movie/upcoming?${apiKey}`);
      return resp.data.results 
   };
 
-  // Get Popular TV 
+  // Get Science Fiction Movie 
 export const getPopularTv = async () => {
     const resp = await axios.get(
-      `${apiUrl}/tv/popular?${apiKey}`,);
+      `${apiUrl}/discover/movie?${apiKey}&with_genres=878`);
      return resp.data.results 
   };
 
  // Get Family Movies
 export const getFamilyMovies = async () => {
     const resp = await axios.get(
-      `${apiUrl}/discover/movie?${apiKey}&with_genres=10751`,);
+      `${apiUrl}/discover/movie?${apiKey}&with_genres=10751`);
      return resp.data.results 
   };
 
   // Get Documentaries
 export const getDocumentaryMovies = async () => {
     const resp = await axios.get(
-      `${apiUrl}/discover/movie?${apiKey}&with_genres=99`,);
+      `${apiUrl}/discover/movie?${apiKey}&with_genres=99`);
      return resp.data.results 
   };
 

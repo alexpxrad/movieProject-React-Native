@@ -133,13 +133,13 @@ const Home = ({navigation}) => {
                 content={popularMovies} />
             </View>)}
     
-            {/* Popular TV Shows */}
+            {/* Science Fiction*/}
             {popularTv && (
             <View 
                 style={styles.carousel}>
                 <List 
                 navigation={navigation} 
-                title={"Popular TV shows"} 
+                title={"Science Fiction"} 
                 content={popularTv} />
             </View>)}
     

@@ -2,6 +2,8 @@ import { style } from 'deprecated-react-native-prop-types/DeprecatedViewPropType
 import React, {useEffect, useState}from 'react'
 import {ScrollView, StyleSheet, Image, Dimensions, ActivityIndicator, Text, View} from 'react-native'
 import {getMovie} from '../services/services'
+import StarRating from 'react-native-star-rating';
+import dateFormat from 'dateformat';
 
 
 const placeHolderImage = require('../assets/images/placeholder.png')
@@ -38,7 +40,7 @@ const Detail = ({route, navigation}) => {
                      : placeHolderImage
                     }
                 />
-                <View  style={styles.container}>
+            <View  style={styles.container}>
                 <Text style={styles.movieTitle} >{movieDetail.title}</Text> 
                 {movieDetail.genres && (
                     <View  style={styles.genresContainer}>
@@ -47,6 +49,17 @@ const Detail = ({route, navigation}) => {
                     })}
                        </View>
                 )}
+                <StarRating 
+                disabled={true}
+                maxStars={5}
+                starSize={30} 
+                rating={movieDetail.vote_average /2}
+                fullStarColor={'gold'}
+                />
+
+                <Text  style={styles.overview} >{movieDetail.overview}</Text>
+
+                <Text style={styles.release} >{'Release date:' + dateFormat(movieDetail.release_date, 'mmmm dd, yyyy')}</Text>
                 </View>
             </ScrollView>
             )}
@@ -75,12 +88,19 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignContent : 'center',
         marginTop: 20,
+        marginBottom: 20.
     },
     genre: {
         marginRight : 10,
         fontWeight: 'bold',
 
-    }
+    },
+        overview : {
+            padding: 15,
+        },
+        release : {
+            fontWeight : 'bold',
+        }
 });
 
 
